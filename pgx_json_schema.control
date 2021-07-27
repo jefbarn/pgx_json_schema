@@ -1,0 +1,5 @@
+comment = 'pgx_json_schema:  Created by pgx'
+default_version = '1.0'
+module_pathname = '$libdir/pgx_json_schema'
+relocatable = false
+superuser = false
