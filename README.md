@@ -13,11 +13,12 @@ This repo is a lightweight connection between the following excellent packages:
 ### Installation:
 
 ```shell
-# [Install Rust](https://www.rust-lang.org/tools/install)
+# Install Rust
+# https://www.rust-lang.org/tools/install
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 # Install PGX
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+cargo install cargo-pgx
 
 # Download this repo
 curl -L 'https://github.com/jefbarn/pgx_json_schema/archive/refs/tags/0.1.0.tar.gz' \
