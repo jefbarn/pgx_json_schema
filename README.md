@@ -10,6 +10,12 @@ This repo is a lightweight connection between the following excellent packages:
   
   https://github.com/Stranger6667/jsonschema-rs
 
+Supported drafts:
+
+* Draft 7 (except optional idn-hostname.json test case)
+* Draft 6
+* Draft 4 (except optional bignum.json test case)
+
 ### Installation:
 
 ```shell
@@ -57,7 +63,9 @@ error_value |             description              |        details         | in
 - [ ] More testing
 - [ ] Benchmarking
 - [ ] Add more schema types like [JTD](https://jsontypedef.com/) and [Avro](https://avro.apache.org/)
- 
+- [ ] Support newer JSON Schema drafts
+- [ ] Add Dockerfile with installation example
+
 ### Prior Art
 - https://github.com/gavinwahl/postgres-json-schema
 - https://github.com/furstenheim/is_jsonb_valid
