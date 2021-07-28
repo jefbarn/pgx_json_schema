@@ -1,11 +1,11 @@
 use jtd::Schema;
 use pgx::*;
-use serde_json::json;
 
 #[pg_extern]
 fn jtd_is_valid(schema: JsonB, instance: JsonB) -> bool {
-    let schema = Schema::from_serde_schema(serde_json::from_value(schema.0).unwrap()).unwrap();
-    let result = jtd::validate(&schema, &instance.0, Default::default()).unwrap();
+    let parsed_schema =
+        Schema::from_serde_schema(serde_json::from_value(schema.0).unwrap()).unwrap();
+    let result = jtd::validate(&parsed_schema, &instance.0, Default::default()).unwrap();
 
     result.is_empty()
 }
@@ -14,16 +14,12 @@ fn jtd_is_valid(schema: JsonB, instance: JsonB) -> bool {
 fn jtd_get_errors(
     schema: JsonB,
     instance: JsonB,
-) -> impl std::iter::Iterator<
-    Item = (
-        name!(instance_path, String),
-        name!(schema_path, String),
-    ),
-> {
-    let schema = Schema::from_serde_schema(serde_json::from_value(schema.0).unwrap()).unwrap();
-    let result = jtd::validate(&schema, &instance.0, Default::default()).unwrap();
+) -> impl std::iter::Iterator<Item = (name!(instance_path, String), name!(schema_path, String))> {
+    let parsed_schema =
+        Schema::from_serde_schema(serde_json::from_value(schema.0).unwrap()).unwrap();
+    let result = jtd::validate(&parsed_schema, &instance.0, Default::default()).unwrap();
 
-    let new: Vec<(JsonB, String, String, String, String)> = result
+    let new: Vec<(String, String)> = result
         .into_iter()
         .map(|e| {
             let (instance_path, schema_path) = e.into_owned_paths();

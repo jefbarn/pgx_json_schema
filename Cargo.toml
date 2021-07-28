@@ -20,6 +20,7 @@ pgx-macros = "0.1.20"
 serde_json = "1.0.59"
 jsonschema = "0.12.0"
 jtd = "0.3"
+avro-rs = "0.13.0"
 
 [dev-dependencies]
 pgx-tests = "0.1.20"

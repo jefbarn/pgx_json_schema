@@ -1,2 +1,3 @@
 json_schema.generated.sql
 json_type_def.generated.sql
+avro.generated.sql

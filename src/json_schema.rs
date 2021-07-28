@@ -19,10 +19,10 @@ fn json_schema_get_errors(
         name!(schema_path, String),
     ),
 > {
-    let compiled = JSONSchema::compile(&schema.0)
+    let parsed_schema = JSONSchema::compile(&schema.0)
         .unwrap_or_else(|err| panic!("Error compiling schema: {:#?}", err));
 
-    let result = compiled
+    let result = parsed_schema
         .validate(&instance.0)
         .err()
         .into_iter()
