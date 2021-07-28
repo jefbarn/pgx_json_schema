@@ -1,1 +1,2 @@
-lib.generated.sql
+json_schema.generated.sql
+json_type_def.generated.sql
