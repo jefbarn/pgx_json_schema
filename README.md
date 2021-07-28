@@ -1,24 +1,24 @@
 ## pgx_json_schema
 
-A JSON Schema validator for Postgres implemented in Rust
+A [JSON Schema](https://json-schema.org/) validator for Postgres implemented in Rust
 
 This repo is a lightweight connection between the following excellent packages:
-* PGX framework for developing PostgreSQL extensions in Rust
+* PGX framework for developing PostgreSQL extensions in Rust [(pgx crate)](https://docs.rs/pgx/)
   
   https://github.com/zombodb/pgx
-* jsonschema-rs Rust schema validation library
+* jsonschema-rs Rust schema validation library [(jsonschema crate)](https://docs.rs/jsonschema/)
   
-  https://github.com/Stranger6667/jsonschema-rs
+  https://github.com/Stranger6667/jsonschema-rs 
 
 Supported drafts:
 
-* Draft 7 (except optional idn-hostname.json test case)
+* Draft 7 (except optional idn-hostname)
 * Draft 6
-* Draft 4 (except optional bignum.json test case)
+* Draft 4 (except optional bignum)
 
 Bonus support added for:
-* [JSON Type Definition (JTD)](https://jsontypedef.com/)
-* [Apache Avro](https://avro.apache.org/)
+* [JSON Type Definition (JTD)](https://jsontypedef.com/) via the [jtd crate](https://docs.rs/jtd/)
+* [Apache Avro](https://avro.apache.org/) via the [avro_rs crate](https://docs.rs/avro-rs/)
 
 ### Installation:
 
@@ -51,9 +51,7 @@ select * from json_schema_is_valid('{"maxLength": 5}'::jsonb, '"foobar"'::jsonb)
 json_schema_is_valid
 ----------------------
 f
-```
 
-```
 select * from json_schema_get_errors('{"maxLength": 5}'::jsonb, '"foobar"'::jsonb);
 
 error_value |             description              |        details         | instance_path | schema_path
@@ -62,6 +60,9 @@ error_value |             description              |        details         | in
 ```
 
 #### JSON Type Definition
+
+> **_NOTE:_**  The jtd library only reports the position of the validation errors, not a description.
+
 ```
 select jtd_is_valid('{
     "properties": {
@@ -81,9 +82,7 @@ select jtd_is_valid('{
  jtd_is_valid 
 --------------
  f
-```
 
-```
 select instance_path, schema_path from jtd_get_errors('{
     "properties": {
         "name": { "type": "string" },
@@ -107,9 +106,10 @@ select instance_path, schema_path from jtd_get_errors('{
 
 ```
 
-> **_NOTE:_**  The jtd library only reports the position of the validation errors, not a description.
-
 #### Apache Avro
+
+> **_NOTE:_**  The avro library only does complete validation, there is no way to list the errors.
+
 ```
 select avro_is_valid('{
     "type": "record",
@@ -127,9 +127,6 @@ select avro_is_valid('{
 ---------------
  t
 ```
-
-> **_NOTE:_**  The avro library only does complete validation, there is no way to list the errors.
-
 
 ### Things left to do:
 
