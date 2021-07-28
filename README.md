@@ -25,6 +25,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 # Install PGX
 cargo install cargo-pgx
+cargo pgx init
 
 # Download this repo
 curl -L 'https://github.com/jefbarn/pgx_json_schema/archive/refs/tags/0.1.0.tar.gz' \
@@ -64,7 +65,7 @@ error_value |             description              |        details         | in
 - [ ] Benchmarking
 - [ ] Add more schema types like [JTD](https://jsontypedef.com/) and [Avro](https://avro.apache.org/)
 - [ ] Support newer JSON Schema drafts
-- [ ] Add Dockerfile with installation example
+- [x] Add Dockerfile with installation example
 
 ### Prior Art
 - https://github.com/gavinwahl/postgres-json-schema
