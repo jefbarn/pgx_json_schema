@@ -23,6 +23,7 @@ fn avro_is_valid(schema: JsonB, instance: JsonB) -> bool {
 }
 
 #[cfg(any(test, feature = "pg_test"))]
+#[pg_schema]
 mod tests {
     use pgx::*;
     use std::panic;

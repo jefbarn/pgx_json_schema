@@ -42,6 +42,7 @@ fn jtd_get_errors(
 }
 
 #[cfg(any(test, feature = "pg_test"))]
+#[pg_schema]
 mod tests {
     use pgx::*;
 

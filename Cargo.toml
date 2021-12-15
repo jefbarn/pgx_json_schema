@@ -1,32 +1,34 @@
 [package]
 name = "pgx_json_schema"
-version = "0.2.0"
-edition = "2018"
+version = "0.2.1"
+edition = "2021"
 
 [lib]
-crate-type = ["cdylib"]
+crate-type = ["cdylib", "rlib"]
 
 [features]
-default = ["pg11"]
+default = ["pg14"]
 pg10 = ["pgx/pg10"]
 pg11 = ["pgx/pg11"]
 pg12 = ["pgx/pg12"]
 pg13 = ["pgx/pg13"]
+pg14 = ["pgx/pg14"]
 pg_test = []
 
 [dependencies]
-pgx = "0.1.20"
-pgx-macros = "0.1.20"
-serde_json = "1.0.59"
-jsonschema = "0.12.0"
-jtd = "0.3"
+pgx = "0.2.6"
+pgx-macros = "0.2.6"
+serde_json = "1.0.73"
+jsonschema = "0.13.3"
+jtd = "0.3.1"
 avro-rs = "0.13.0"
 
 [dev-dependencies]
-pgx-tests = "0.1.20"
+pgx-tests = "0.2.6"
 
 [profile.dev]
 panic = "unwind"
+lto = "thin"
 
 [profile.release]
 panic = "unwind"
