@@ -1,12 +1,10 @@
+mod avro;
 mod json_schema;
 mod json_type_def;
-mod avro;
-
 
 use pgx::*;
 
 pg_module_magic!();
-
 
 #[cfg(test)]
 pub mod pg_test {

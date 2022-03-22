@@ -1,5 +1,5 @@
-use pgx::*;
 use jsonschema::JSONSchema;
+use pgx::*;
 
 #[pg_extern]
 fn json_schema_is_valid(schema: JsonB, instance: JsonB) -> bool {
@@ -62,6 +62,9 @@ mod tests {
         let (_value, description) = Spi::get_two::<JsonB, String>(
             "select * from json_schema_get_errors('{\"maxLength\": 5}', '\"foobar\"'::jsonb)",
         );
-        assert_eq!(description, Some("\"foobar\" is longer than 5 characters".to_string()))
+        assert_eq!(
+            description,
+            Some("\"foobar\" is longer than 5 characters".to_string())
+        )
     }
 }
