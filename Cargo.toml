@@ -19,7 +19,7 @@ pg_test = []
 pgx = "0.4.0"
 pgx-macros = "0.4.0"
 serde_json = "1.0.79"
-jsonschema = "0.15.0"
+jsonschema = "0.16.0"
 jtd = "0.3.1"
 avro-rs = "0.13.0"
 
